@@ -1,5 +1,21 @@
 import React from 'react';
 
 export default function VideoDetail({ video }) {
-  return <div>{video ? video.snippet.title : 'no video'}</div>;
+  if (!video) {
+    return <div />;
+  }
+
+  const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
+
+  return (
+    <div>
+      <div className="ui embed">
+        <iframe title="youtube" src={videoSrc} />
+      </div>
+      <div className="ui segment">
+        <h4 className="ui header">{video.snippet.title}</h4>
+        <p>{video.snippet.description}</p>
+      </div>
+    </div>
+  );
 }
