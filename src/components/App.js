@@ -23,6 +23,8 @@ class App extends React.Component {
       },
     });
 
+    this.setState({ selectedVideo: null }); // to undisplay the current video on new search
+
     this.setState({ videos: response.data.items });
   };
 
