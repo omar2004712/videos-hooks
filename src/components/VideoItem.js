@@ -10,7 +10,7 @@ export default function VideoItem({ video, onVideoSelect }) {
     >
       <img
         className="ui image"
-        alt="thumbnail"
+        alt={video.snippet.title}
         src={video.snippet.thumbnails.medium.url}
       />
       <div className="content">
