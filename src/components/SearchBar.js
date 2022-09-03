@@ -1,39 +1,26 @@
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
+export default function SearchBar({ onTermSubmit }) {
+  const [term, setTerm] = useState('');
 
-    this.state = { term: '' };
-  }
-
-  onInputChange = (e) => {
-    this.setState({ term: e.target.value });
-  };
-
-  onFormSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
-    this.props.onTermSubmit(this.state.term);
+    onTermSubmit(term);
   };
 
-  render() {
-    return (
-      <div className="search-bar ui segment">
-        <form onSubmit={this.onFormSubmit} className="ui form">
-          <label>Search Video</label>
-          <input
-            type="text"
-            value={this.state.term}
-            onChange={this.onInputChange}
-          />
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="search-bar ui segment">
+      <form onSubmit={onSubmit} className="ui form">
+        <label>Search Video</label>
+        <input
+          type="text"
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+        />
+      </form>
+    </div>
+  );
 }
-
-export default SearchBar;
